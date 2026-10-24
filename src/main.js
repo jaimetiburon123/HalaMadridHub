@@ -1,9 +1,9 @@
 import './style.css';
-import { getSquad, getLastMatches, getNextMatches, getLeagueTable } from './api/sportsdb.js';
+import { getTeam, getSquad, getLastMatches, getNextMatches, getLeagueTable } from './api/sportsdb.js';
 import { normalizePlayers, filterPlayers, groupByLine, squadStats, availableLines } from './logic/squad.js';
 import { normalizeMatches, normalizeTable, seasonSummary, currentSeason } from './logic/matches.js';
 import {
-  renderLoading, renderError, renderMatches, renderSeason,
+  renderClubHeader, renderLoading, renderError, renderMatches, renderSeason,
   renderSquadStats, renderSquadFilters, renderSquadGroups,
 } from './render/ui.js';
 
@@ -51,6 +51,16 @@ async function loadSquad() {
   }
 }
 
+// Header details are a nice extra: if they fail, the plain title stays.
+async function loadClub() {
+  try {
+    renderClubHeader($('#club'), await getTeam());
+  } catch {
+    // Keep the default header.
+  }
+}
+
+loadClub();
 loadMatches();
 loadSeason();
 loadSquad();

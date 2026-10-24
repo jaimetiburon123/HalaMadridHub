@@ -1,169 +1,183 @@
+/* Hala Madrid Hub · white, gold and navy */
 :root {
   --white: #ffffff;
+  --paper: #f6f7fb;
   --gold: #febe10;
+  --gold-soft: #fff4d1;
   --navy: #00529f;
+  --navy-dark: #0a1f44;
   --ink: #1a1a2e;
-  font-family: system-ui, sans-serif;
+  --muted: #5b6270;
+  --line: #e4e7ee;
+  --win: #1e8e3e;
+  --draw: #8a8f98;
+  --loss: #c62828;
+  --radius: 14px;
+  --shadow: 0 2px 10px rgba(10, 31, 68, 0.08);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   color: var(--ink);
-  background: var(--white);
+  background: var(--paper);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  background: var(--paper);
 }
 
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Header */
 .site-header {
-  background: var(--navy);
+  background: linear-gradient(135deg, var(--navy-dark), var(--navy));
   color: var(--white);
-  padding: 1rem;
-  border-bottom: 4px solid var(--gold);
+  border-bottom: 5px solid var(--gold);
+  padding: 1.5rem 1rem;
 }
 
-.site-header h1 {
+.club {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.club-badge {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+}
+
+.club-titles h1 {
   margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: 0.02em;
 }
 
+.club-details {
+  margin: 0.25rem 0 0;
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+/* Layout */
 main {
-  padding: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
 }
 
-/* States */
+.panel {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+  color: var(--navy-dark);
+  border-left: 5px solid var(--gold);
+  padding-left: 0.6rem;
+}
+
+/* Loading, error and empty states */
 .state {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  padding: 3rem 1rem;
+  padding: 2.5rem 1rem;
   text-align: center;
+  color: var(--muted);
+}
+
+.state p {
+  margin: 0;
 }
 
 .state--error {
-  color: #b00020;
-}
-
-.state--empty {
-  color: #666;
+  color: var(--loss);
+  background: #fdecec;
+  border-radius: var(--radius);
 }
 
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #e8edf5;
+  border: 4px solid var(--line);
   border-top-color: var(--gold);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .btn {
   background: var(--navy);
   color: var(--white);
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 0.6rem 1.2rem;
   font: inherit;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .btn:hover {
-  background: #003f7a;
+  background: var(--navy-dark);
 }
 
-/* Squad */
-.squad-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
-}
-
-.player-card {
-  position: relative;
-  border: 1px solid #e3e3e3;
-  border-radius: 10px;
-  padding: 0.75rem;
-  text-align: center;
-  background: var(--white);
-}
-
-.player-card img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 8px;
-  background: #e8edf5;
-}
-
-.player-card h3 {
-  font-size: 1rem;
-  margin: 0.5rem 0 0.25rem;
-}
-
-.player-meta {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #555;
-}
-
-.player-number {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  background: var(--gold);
-  color: var(--ink);
-  font-weight: 700;
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  display: grid;
-  place-items: center;
-}
-
-/* Layout (basic for now, full styling comes in the next step) */
-main {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.panel {
-  margin-bottom: 2rem;
-}
-
+/* Stat tiles */
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.stats:empty {
+  display: none;
 }
 
 .stat {
   display: flex;
   flex-direction: column;
-  padding: 0.75rem;
-  border-radius: 8px;
-  background: #f4f7fb;
+  gap: 0.15rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  background: var(--paper);
+  border-bottom: 3px solid var(--gold);
 }
 
 .stat-value {
+  font-size: 1.35rem;
   font-weight: 700;
-  font-size: 1.2rem;
+  color: var(--navy);
 }
 
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.chip[aria-pressed='true'] {
-  background: var(--navy);
-  color: var(--white);
-}
-
+/* Match centre */
 .matches {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -171,15 +185,45 @@ main {
 }
 
 .match-card {
-  border: 1px solid #e3e3e3;
-  border-radius: 8px;
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--gold);
+  border-radius: var(--radius);
   padding: 1rem;
+  background: var(--white);
+}
+
+.match-card--W { border-top-color: var(--win); }
+.match-card--D { border-top-color: var(--draw); }
+.match-card--L { border-top-color: var(--loss); }
+
+.match-header,
+.match-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.match-footer {
+  justify-content: center;
+  text-align: center;
+}
+
+.match-label {
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .match-body {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
   text-align: center;
 }
 
@@ -187,19 +231,211 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .match-team img {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
+}
+
+.match-score {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--navy-dark);
+  white-space: nowrap;
+}
+
+/* League table */
+.table-scroll {
+  overflow-x: auto;
 }
 
 .league-table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.league-table th {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.league-table th,
+.league-table td {
+  padding: 0.6rem 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.league-table th:nth-child(2),
+.league-table td:nth-child(2) {
+  text-align: left;
 }
 
 .league-table .is-us {
+  background: var(--gold-soft);
   font-weight: 700;
+}
+
+.league-table .is-us td:first-child {
+  box-shadow: inset 4px 0 0 var(--gold);
+}
+
+.form {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.form-chip {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 4px;
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.form-chip--W { background: var(--win); }
+.form-chip--D { background: var(--draw); }
+.form-chip--L { background: var(--loss); }
+
+/* Squad filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filters:empty {
+  display: none;
+}
+
+.search {
+  flex: 1 1 240px;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  background: var(--paper);
+}
+
+.search:focus {
+  outline: 2px solid var(--gold);
+  border-color: transparent;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  border: 1px solid var(--navy);
+  background: var(--white);
+  color: var(--navy);
+  border-radius: 999px;
+  padding: 0.4rem 0.95rem;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.chip:hover {
+  background: var(--paper);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* Squad */
+.line-group + .line-group {
+  margin-top: 1.5rem;
+}
+
+.line-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.squad-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  gap: 1rem;
+}
+
+.player-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--line);
+  text-align: center;
+  padding-bottom: 0.75rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.player-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: bottom;
+  background: linear-gradient(180deg, var(--gold-soft), var(--white));
+}
+
+.player-card h3 {
+  margin: 0.6rem 0.5rem 0.2rem;
+  font-size: 1rem;
+}
+
+.player-meta {
+  margin: 0 0.5rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.player-number {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--navy);
+  color: var(--gold);
+  font-weight: 800;
+}
+
+@media (max-width: 480px) {
+  .club-badge {
+    width: 52px;
+    height: 52px;
+  }
+
+  .squad-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
