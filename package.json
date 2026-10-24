@@ -1,0 +1,15 @@
+{
+  "name": "hala-madrid-hub",
+  "version": "0.1.0",
+  "description": "Real Madrid squad explorer and match centre built with Vite, fetch and async/await (TheSportsDB API)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.3.4"
+  }
+}
