@@ -42,3 +42,10 @@ export async function getNextMatches(teamId = REAL_MADRID_ID) {
   const data = await request(`eventsnext.php?id=${teamId}`);
   return Array.isArray(data?.events) ? data.events : [];
 }
+
+export const LA_LIGA_ID = '4335';
+
+export async function getLeagueTable(season, leagueId = LA_LIGA_ID) {
+  const data = await request(`lookuptable.php?l=${leagueId}&s=${season}`);
+  return Array.isArray(data?.table) ? data.table : [];
+}
