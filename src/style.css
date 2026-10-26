@@ -439,3 +439,23 @@ main {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Stale data note (network failed, saved data shown) */
+.stale-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  background: var(--gold-soft);
+  border-left: 4px solid var(--gold);
+  font-size: 0.9rem;
+}
+
+.btn--small {
+  padding: 0.35rem 0.8rem;
+  font-size: 0.85rem;
+}

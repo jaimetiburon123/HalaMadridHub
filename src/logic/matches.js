@@ -1,5 +1,5 @@
 // Logic layer: pure functions for fixtures, results and the league table.
-import { REAL_MADRID_ID } from '../api/sportsdb.js';
+import { REAL_MADRID_ID } from '../config.js';
 
 const toNumber = (value) => {
   const n = Number(value);
@@ -46,7 +46,8 @@ export function parseForm(form) {
     .toUpperCase()
     .split('')
     .filter((c) => ['W', 'D', 'L'].includes(c));
-  const counts = letters.reduce((acc, c) => ({ ...acc, [c]: acc[c] + 1 }), { W: 0, D: 0, L: 0 });
+  const count = (letter) => letters.filter((c) => c === letter).length;
+  const counts = { W: count('W'), D: count('D'), L: count('L') };
   return { ...counts, letters, points: counts.W * 3 + counts.D };
 }
 
